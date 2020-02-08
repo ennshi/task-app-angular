@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  ul {
+    display: flex;
+  }
+}
+

@@ -1,0 +1,15 @@
+<h1>Login</h1>
+<div class="form">
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <input formControlName="email" type="email" placeholder="Email"/>
+  <input formControlName="password" type="password" placeholder="Password"/>
+  <div class="validation" *ngIf="form.get('email').touched&&form.get('password').touched&&form.invalid">
+    <small>Provided credentials are incorrect</small>
+  </div>
+  <div class="validation" *ngIf="auth.error$ | async as error">
+    <small>{{error}}</small>
+  </div>
+  <button type="submit" [disabled]="form.invalid||submitted">Submit</button>
+  <a [routerLink]="'/registration'">Don't have an account yet?</a>
+</form>
+</div>

@@ -1,0 +1,16 @@
+<nav class="navbar main">
+  <h1>Task-App-Admin</h1>
+  <ul>
+    <li>
+      <a [routerLink]="'/'">Task App</a>
+    </li>
+    <li>
+      <a [routerLink]="['/admin', 'users']">Users</a>
+    </li>
+    <li>
+      <a href="#" (click)="logout($event)">Logout</a>
+    </li>
+  </ul>
+</nav>
+<router-outlet></router-outlet>
+
