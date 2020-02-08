@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../shared/services/auth.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router, Params} from '@angular/router';
 import {User} from '../shared/interfaces/user';
 
 @Component({
@@ -12,11 +12,18 @@ import {User} from '../shared/interfaces/user';
 export class LoginPageComponent implements OnInit {
   form: FormGroup;
   submitted = false;
+  message: string;
 
   constructor(public auth: AuthService,
-              private router: Router) { }
+              private router: Router,
+              private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.route.queryParams.subscribe((params: Params) => {
+      if (params['loginAgain']) {
+        this.message = 'Please, login';
+      }
+    });
     this.form = new FormGroup({
       email: new FormControl(null, [Validators.email, Validators.required]),
       password: new FormControl(null, [Validators.required])
