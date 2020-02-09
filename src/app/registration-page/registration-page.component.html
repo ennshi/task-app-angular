@@ -1,3 +1,20 @@
-<p>
-  registration-page works!
-</p>
+<h1>Registration</h1>
+<div class="form">
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <input formControlName="name" type="text" placeholder="Username"/>
+    <div class="validation" *ngIf="form.get('name').touched&&form.get('name').invalid">
+      <small>Please provide a username 3-20 characters long</small>
+    </div>
+    <input formControlName="email" type="email" placeholder="Email"/>
+    <div class="validation" *ngIf="form.get('email').touched&&form.get('email').invalid">
+      <small>Please provide a correct email</small>
+    </div>
+    <input formControlName="password" type="password" placeholder="Password"/>
+    <div class="validation" *ngIf="form.get('password').touched&&form.get('password').invalid">
+      <small>Please provide a password 9-20 characters long</small>
+    </div>
+    <button type="submit" [disabled]="form.invalid">Submit</button>
+    <button type="reset" >Reset</button>
+    <a [routerLink]="'/login'">Already have an account</a>
+  </form>
+</div>
