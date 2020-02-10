@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {User} from '../shared/interfaces/user';
+import {UserService} from '../shared/services/user.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-registration-page',
@@ -9,7 +11,9 @@ import {User} from '../shared/interfaces/user';
 })
 export class RegistrationPageComponent implements OnInit {
   form: FormGroup;
-  constructor() { }
+  submitted: boolean;
+  constructor(public userService: UserService,
+              private router: Router) { }
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -27,6 +31,13 @@ export class RegistrationPageComponent implements OnInit {
       email: this.form.value.email,
       password: this.form.value.password
     };
-    console.log(user);
+    this.userService.create(user)
+      .subscribe(() => {
+        this.form.reset();
+        this.router.navigate(['/', 'tasks']);
+        this.submitted = false;
+      }, () => {
+        this.submitted = false;
+      });
   }
 }

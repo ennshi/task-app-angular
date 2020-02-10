@@ -44,9 +44,11 @@ export class AuthService {
     }
     return throwError(error);
   }
-  private setToken(response) {
+  setToken(response) {
     if (response) {
-      response = JSON.parse(response);
+      if (typeof response !== 'object') {
+        response = JSON.parse(response);
+      }
       const expDate = new Date(new Date().getTime() + +response.token.expiration * 1000);
       localStorage.setItem('access-token', response.token.token);
       localStorage.setItem('token-exp', expDate.toString());
