@@ -20,7 +20,7 @@ export class LoginPageComponent implements OnInit {
 
   ngOnInit() {
     this.route.queryParams.subscribe((params: Params) => {
-      if (params['loginAgain']) {
+      if (params['loginAgain'] || params['authFailed']) {
         this.message = 'Please, login';
       }
     });
