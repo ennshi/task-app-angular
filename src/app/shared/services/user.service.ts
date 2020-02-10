@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {User} from '../interfaces/user';
 import {Observable, Subject, throwError} from 'rxjs';
-import {catchError, tap} from 'rxjs/operators';
+import {catchError, map, tap} from 'rxjs/operators';
 import {AuthService} from './auth.service';
 
 @Injectable({providedIn: 'root'})
@@ -22,5 +22,14 @@ export class UserService {
       this.userError$.next('Email is already registered');
     }
     return throwError(error);
+  }
+  get(): Observable<any> {
+    return this.http.get('/api/users/me');
+  }
+  update(user: User) {
+    return this.http.patch('/api/users/me', user);
+  }
+  delete() {
+    return this.http.delete('/api/users/me');
   }
 }
