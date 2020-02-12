@@ -136,3 +136,11 @@ small {
   display: block;
   text-align: center;
 }
+
+.completed {
+  text-decoration: line-through;
+}
+
+fieldset {
+  border: none;
+}

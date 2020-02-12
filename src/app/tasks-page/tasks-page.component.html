@@ -1,5 +1,21 @@
-<div id="task-list">
-  <app-task></app-task>
-  <app-task></app-task>
-  <app-task></app-task>
+
+<div *ngIf="tasks; else loading">
+  <button type="button" (click)="showForm()" [disabled]="showCreateForm">Add a New Task</button>
+  <div *ngIf="showCreateForm">
+    <form [formGroup]="form" (ngSubmit)="createTask()">
+      <input type="text" formControlName="description">
+      <select formControlName="priority">
+        <option value="low">low</option>
+        <option value="middle">middle</option>
+        <option value="high">high</option>
+      </select>
+      <button type="submit" [disabled]="submitted">Save</button>
+      <button type="button" (click)="reset()">Reset</button>
+    </form>
+  </div>
+  <app-task *ngFor="let item of tasks" [task] = "item" (removeTask)="refreshTasks($event)">
+  </app-task>
 </div>
+<ng-template #loading>
+  <p>loading...</p>
+</ng-template>
