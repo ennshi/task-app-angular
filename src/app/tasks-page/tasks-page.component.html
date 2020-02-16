@@ -1,21 +1,61 @@
-
-<div *ngIf="tasks; else loading">
-  <button type="button" (click)="showForm()" [disabled]="showCreateForm">Add a New Task</button>
-  <div *ngIf="showCreateForm">
-    <form [formGroup]="form" (ngSubmit)="createTask()">
-      <input type="text" formControlName="description">
-      <select formControlName="priority">
-        <option value="low">low</option>
-        <option value="middle">middle</option>
-        <option value="high">high</option>
-      </select>
-      <button type="submit" [disabled]="submitted">Save</button>
-      <button type="button" (click)="reset()">Reset</button>
-    </form>
+<main>
+<section class="card">
+    <header>
+      <img src="" alt="user photo" />
+      <h1>Hello</h1>
+    </header>
+    <div class="card-body">
+      <p>Click to create a new task to do</p>
+      <div class="btn-group">
+        <button class="btn" type="button" (click)="showForm()">New Task</button>
+      </div>
+      <form [formGroup]="form" (ngSubmit)="createTask()" *ngIf="showCreateForm" id="createForm">
+        <div class="control-group">
+          <label for="create-priority">Priority</label>
+          <select formControlName="priority" id="create-priority" class="active-form">
+            <option value="low">low</option>
+            <option value="middle">middle</option>
+            <option value="high">high</option>
+          </select>
+        </div>
+        <div class="control-group">
+          <label for="create-description">Description</label>
+          <textarea type="text" formControlName="description" id="create-description" class="active-form"></textarea>
+        </div>
+        <div class="btn-group">
+          <button type="submit" [disabled]="submitted" class="btn btn-success">Save</button>
+          <button type="button" (click)="reset()" class="btn">Reset</button>
+        </div>
+      </form>
+    </div>
+  </section>
+  <section class="card">
+    <header><h1>Today</h1></header>
+    <div class="card-body">
+      <div id="date">
+        <h2>Monday</h2>
+        <h2>16</h2>
+        <h2>April</h2>
+        <h2>2020</h2>
+      </div>
+    </div>
+  </section>
+<section class="right-block">
+  <div class="control-group">
+    <label for="filter">Sort By</label>
+    <select id="filter">
+      <option>---</option>
+      <option>Non-completed first</option>
+      <option>Completed first</option>
+      <option>Date</option>
+    </select>
   </div>
-  <app-task *ngFor="let item of tasks" [task] = "item" (removeTask)="refreshTasks($event)">
-  </app-task>
-</div>
+  <div *ngIf="tasks; else loading">
+    <app-task *ngFor="let item of tasks" [task] = "item" (removeTask)="refreshTasks($event)">
+    </app-task>
+  </div>
+</section>
 <ng-template #loading>
-  <p>loading...</p>
+    <p>loading...</p>
 </ng-template>
+</main>

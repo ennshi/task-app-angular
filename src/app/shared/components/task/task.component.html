@@ -1,20 +1,40 @@
-<div class="card">
-  <p>{{task.updatedAt | date:'yyyy-MM-dd HH:mm:ss' }}</p>
+<section class="task" [ngClass]="{'priority-low': task.priority === 'low',
+              'priority-middle': task.priority === 'middle',
+              'priority-high': task.priority === 'high'}">
   <form [formGroup]="form">
-    <fieldset [disabled]="editMode ? 'disabled': null ">
-      <input formControlName="description" [(ngModel)]="task.description" [class.completed]="task.completed"/>
-      <select formControlName="priority" [(ngModel)]="task.priority">
-        <option value="low">low</option>
-        <option value="middle">middle</option>
-        <option value="high">high</option>
-      </select>
-      <button [hidden]="editMode ? 'hidden' : null" (click)="save()" [disabled]="submittedSave || form.invalid
-                  || (form.get('description').pristine&&form.get('priority').pristine)">Save</button>
-      <button [hidden]="editMode ? 'hidden' : null" (click)="reset()">Reset</button>
+    <fieldset [disabled]="editMode ? null : 'disabled'">
+      <div *ngIf="editMode" class="control-group">
+        <label for="priority">Priority</label>
+        <select formControlName="priority" id="priority" [(ngModel)]="task.priority" [ngClass]="{'active-form': editMode}">
+          <option value="low">low</option>
+          <option value="middle">middle</option>
+          <option value="high">high</option>
+        </select>
+      </div>
+      <div class="control-group">
+        <div *ngIf="editMode">
+          <label for="description">Description</label>
+        </div>
+        <textarea formControlName="description" id="description" [(ngModel)]="task.description" [ngClass]="{'active-form': editMode, 'completed-task': task.completed}"></textarea>
+      </div>
     </fieldset>
-    <button type="button" (click)="editTaskForm()" [disabled]="submitted">Edit</button>
-    <button type="button" (click)="completed()" [disabled]="submitted">Done</button>
-    <button type="button" (click)="remove()" [disabled]="submitted">Remove</button>
+    <div *ngIf="editMode; else nonEdit">
+      <div class="btn-group">
+        <button (click)="save()" [disabled]="submittedSave || form.invalid
+                      || (form.get('description').pristine&&form.get('priority').pristine)" class="btn btn-success">Save</button>
+        <button class="btn" (click)="reset()">Reset</button>
+      </div>
+    </div>
   </form>
-</div>
+  <ng-template #nonEdit>
+    <div class="btn-block">
+      <p>{{task.updatedAt | date:'dd/MM/yy HH:mm' }}</p>
+      <button class="btn-icon" type="button" (click)="completed()" [disabled]="submitted">
+        <i class="fas" [ngClass]="{'fa-check': !task.completed, 'fa-undo': task.completed}"></i>
+      </button>
+      <button class="btn-icon" type="button" (click)="editTaskForm()" [disabled]="submitted"><i class="fas fa-edit"></i></button>
+      <button class="btn-icon" type="button" (click)="remove()" [disabled]="submitted"><i class="fas fa-trash-alt"></i></button>
+    </div>
+  </ng-template>
+</section>
 

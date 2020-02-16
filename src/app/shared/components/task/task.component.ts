@@ -12,7 +12,7 @@ import {Router} from '@angular/router';
 export class TaskComponent implements OnInit {
   @Input() task: Task;
   @Output() removeTask: EventEmitter<string> = new EventEmitter<string>();
-  editMode = true;
+  editMode = false;
   form: FormGroup;
   submitted = false;
   submittedSave = false;
