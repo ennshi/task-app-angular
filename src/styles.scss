@@ -102,7 +102,7 @@ button:hover {
 }
 
 .btn-success {
-  background-color: #1effbc;
+  background-color: var(--success-color);
 }
 
 .btn-icon {
@@ -149,4 +149,48 @@ small {
 .active-form {
   border: var(--primary-color) 1px solid;
   border-radius: 15px;
+}
+
+.form-container {
+  background-color: var(--light-color);
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem .2rem 2rem .2rem;
+  form {
+    margin-top: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+  }
+  h1 {
+    color: var(--danger-color);
+    text-align: center;
+    font-family: 'Suez One', serif;
+    font-weight: normal;
+  }
+  input {
+    margin: 10px auto;
+    display: block;
+    width: 12rem;
+    padding: 0.1rem 0.3rem;
+    border-bottom: #0018a8 solid 1px;
+  }
+  label {
+    text-align: left;
+    color: var(--primary-color);
+    margin-top: 0.4rem;
+    display: block;
+  }
+  .control-group {
+    flex-direction: column;
+  }
+  a {
+    margin-top: .5rem;
+  }
+  .btn {
+    margin: .5rem;
+  }
 }

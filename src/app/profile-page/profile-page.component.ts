@@ -17,6 +17,7 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
   name: string;
   email: string;
   submitted: boolean;
+  changeAvatar = false;
   constructor(public userService: UserService,
               public router: Router) { }
 
@@ -67,5 +68,8 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
           localStorage.clear();
         });
     }
+  }
+  showForm() {
+    this.changeAvatar = !this.changeAvatar;
   }
 }

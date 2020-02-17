@@ -1,0 +1,22 @@
+span {
+  color: var(--danger-color);
+  font-family: 'Suez One', serif;
+}
+main {
+  min-width: 40vw;
+  max-width: 16rem;
+  margin: 2rem auto;
+  color: white;
+  header {
+    text-align: center;
+  }
+}
+
+h1 {
+  font-weight: normal;
+  letter-spacing: 0.04rem;
+}
+
+button {
+  margin-top: 2rem;
+}

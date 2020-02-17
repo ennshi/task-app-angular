@@ -1,4 +1,4 @@
-<div class="form-container">
+<section class="form-container">
   <h1>Sign Up</h1>
   <div class="form">
     <form [formGroup]="form" (ngSubmit)="submit()">
@@ -26,9 +26,11 @@
       <div class="validation" *ngIf="form.get('password').touched&&form.get('password').invalid">
         <small>Please provide a password 9-20 characters long</small>
       </div>
-      <button type="submit" class="btn btn-success" [disabled]="form.invalid">Submit</button>
-      <button type="reset" class="btn btn-reset">Reset</button>
+      <div class="btn-group">
+        <button type="submit" class="btn btn-success" [disabled]="form.invalid">Submit</button>
+        <button type="reset" class="btn btn-reset">Reset</button>
+      </div>
       <a [routerLink]="'/login'">Already have an account</a>
     </form>
   </div>
-</div>
+</section>

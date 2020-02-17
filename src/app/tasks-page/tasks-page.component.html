@@ -1,13 +1,15 @@
 <main>
 <section class="card">
     <header>
-      <img src="" alt="user photo" />
-      <h1>Hello</h1>
+      <img src="../../assets/images.jpg" alt="user photo" />
+      <h1>Hello, Username</h1>
     </header>
     <div class="card-body">
       <p>Click to create a new task to do</p>
       <div class="btn-group">
-        <button class="btn" type="button" (click)="showForm()">New Task</button>
+        <button class="btn" type="button" (click)="showForm()">New Task <i class="fas"
+                                                                           [ngClass]="{'fa-angle-down': !showCreateForm,
+                                                                                'fa-angle-up': showCreateForm}"></i></button>
       </div>
       <form [formGroup]="form" (ngSubmit)="createTask()" *ngIf="showCreateForm" id="createForm">
         <div class="control-group">

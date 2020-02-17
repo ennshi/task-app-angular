@@ -1,8 +1,15 @@
+main {
+  width: 100%;
+}
 .right-block {
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
   .control-group {
     margin-right: .5rem;
     justify-content: flex-end;
+    max-width: 25rem;
     label {
       color: var(--danger-color);
       font-family: 'Suez One', serif;
@@ -15,7 +22,7 @@
   }
 }
 .card {
-  min-width: 30vw;
+  min-width: 35vw;
   max-width: 25rem;
   margin: 0 auto;
   position: relative;
@@ -31,7 +38,14 @@
     h1 {
       font-weight: normal;
       font-size: 1.3rem;
-      padding-top: .5rem;
+      padding-top: .7rem;
+    }
+    img {
+      display: block;
+      margin-top: .7rem;
+      width: 3rem;
+      height: 3rem;
+      object-fit: cover;
     }
   }
 }
@@ -97,6 +111,12 @@
   }
 }
 
+button {
+  i {
+    font-size: 1.3rem;
+    padding-left: .3rem;
+  }
+}
 
 @media screen and (min-width: 710px) {
   main {
@@ -138,12 +158,6 @@
       margin-top: -.4rem;
     }
   }
-  .card {
-    h1 {
-      font-size: 1.7rem;
-      padding-top: .8rem;
-    }
-  }
   .card:first-child {
     header {
       height: 6rem;
@@ -152,6 +166,23 @@
   .card:nth-child(2) {
     header {
       height: 4rem;
+    }
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .card {
+    header {
+      h1 {
+        font-size: 1.7rem;
+        padding-top: .8rem;
+      }
+
+      img {
+        width: 4.5rem;
+        height: 4.5rem;
+        object-fit: cover;
+      }
     }
   }
 }
