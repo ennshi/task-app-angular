@@ -1,8 +1,8 @@
 <section class="profile-container">
   <section id="avatar-container">
     <header><h1>Profile</h1></header>
-    <div class="img-container">
-      <img src="../../assets/images.jpg" alt="user avatar" />
+    <div class="img-container" *ngIf="user && !hideAvatar">
+      <img [src]="avatarUrl" (error)="fallbackImage()" alt="user avatar" />
     </div>
     <div class="btn-group">
       <button class="btn" type="button" (click)="showForm()">Change Avatar <i class="fas"
@@ -10,14 +10,19 @@
                                                                                 'fa-angle-up': changeAvatar}"></i></button>
     </div>
     <div *ngIf="changeAvatar">
-      <div class="control-group">
-        <input type="file" id="avatar"/>
-      </div>
-      <div class="btn-group">
-        <button type="submit" class="btn btn-success">Save</button>
-        <button type="button" class="btn">Reset</button>
-        <button type="button" class="btn">Delete</button>
-      </div>
+      <form [formGroup]="avatarForm" (ngSubmit)="addAvatar()">
+        <div class="control-group">
+          <input type="file" id="avatar" formControlName="avatarImg" (change)="selectImg($event)"/>
+          <div class="validation" *ngIf="avatarForm.invalid && avatarForm.touched && !avatarForm.pristine">
+            <small>Please add an avatar (JPG, JPEG or PNG) and smaller than 1MB</small>
+          </div>
+        </div>
+        <div class="btn-group">
+          <button type="submit" class="btn btn-success" [disabled]="avatarForm.invalid">Save</button>
+          <button type="button" class="btn" (click)="resetAvatarForm()">Reset</button>
+          <button type="button" class="btn" (click)="deleteAvatar()">Delete</button>
+        </div>
+      </form>
     </div>
   </section>
   <section class="form-container">
@@ -47,7 +52,7 @@
         <div class="btn-group">
           <button type="submit" [disabled]="form.invalid" class="btn btn-success">Save</button>
           <button type="button" (click)="reset()" class="btn">Reset</button>
-          <button type="button" (click)="delete()" class="btn btn-delete" >Delete Profile And All Data</button>
+          <button type="button" (click)="delete()" class="btn btn-delete">Delete Profile And All Data</button>
         </div>
       </form>
     </div>

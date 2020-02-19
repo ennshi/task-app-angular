@@ -4,6 +4,7 @@ import {Observable, Subscription} from 'rxjs';
 import {Task} from '../shared/interfaces/task';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {filter, map} from 'rxjs/operators';
+import {AvatarService} from '../shared/services/avatar.service';
 
 @Component({
   selector: 'app-tasks-page',
@@ -13,19 +14,23 @@ import {filter, map} from 'rxjs/operators';
 export class TasksPageComponent implements OnInit, OnDestroy {
   showCreateForm = false;
   form: FormGroup;
-  constructor(public taskService: TaskService) { }
+  constructor(public taskService: TaskService,
+              public avatar: AvatarService) { }
   // tasks$: Observable<Task[]>;
   tasks: Array<Task>;
   pSub: Subscription;
   submitted = false;
+  id = localStorage.getItem('id');
+  username = localStorage.getItem('username');
+  avatarUrl = `/api/users/${(this.id).toString()}/avatar`;
 
   ngOnInit() {
     this.pSub = this.taskService.getAll().subscribe((response: Task[]) => {
       this.tasks = response;
     });
-   this.form = new FormGroup({
-     description: new FormControl(null, [Validators.required]),
-     priority: new FormControl('low', [Validators.required])
+    this.form = new FormGroup({
+      description: new FormControl(null, [Validators.required]),
+      priority: new FormControl('low', [Validators.required])
    });
   }
   ngOnDestroy() {
@@ -64,5 +69,8 @@ export class TasksPageComponent implements OnInit, OnDestroy {
     // this.tasks$ = this.tasks$
     //   .pipe(map((tasks) => tasks.filter(task => (task._id.toString() !== id))));
     this.tasks = this.tasks.filter(task => task._id !== id);
+  }
+  fallbackImage() {
+    this.avatarUrl = this.avatar.fallbackUrl;
   }
 }

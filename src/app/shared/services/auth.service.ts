@@ -52,6 +52,8 @@ export class AuthService {
       const expDate = new Date(new Date().getTime() + +response.token.expiration * 1000);
       localStorage.setItem('access-token', response.token.token);
       localStorage.setItem('token-exp', expDate.toString());
+      localStorage.setItem('id', response.user._id.toString());
+      localStorage.setItem('username', response.user.name);
     } else {
       localStorage.clear();
     }
