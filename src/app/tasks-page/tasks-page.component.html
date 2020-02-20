@@ -35,10 +35,10 @@
     <header><h1>Today</h1></header>
     <div class="card-body">
       <div id="date">
-        <h2>Monday</h2>
-        <h2>16</h2>
-        <h2>April</h2>
-        <h2>2020</h2>
+        <h2>{{date | date: 'EEEE'}}</h2>
+        <h2>{{date | date: 'dd'}}</h2>
+        <h2>{{date | date: 'MMMM'}}</h2>
+        <h2>{{date | date: 'yyyy'}}</h2>
       </div>
     </div>
   </section>

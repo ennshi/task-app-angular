@@ -23,6 +23,7 @@ export class TasksPageComponent implements OnInit, OnDestroy {
   id = localStorage.getItem('id');
   username = localStorage.getItem('username');
   avatarUrl = `/api/users/${(this.id).toString()}/avatar`;
+  date = new Date();
 
   ngOnInit() {
     this.pSub = this.taskService.getAll().subscribe((response: Task[]) => {
