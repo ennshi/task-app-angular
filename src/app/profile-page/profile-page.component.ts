@@ -63,6 +63,7 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
         this.submitted = false;
         this.name = this.user.name;
         this.email = this.user.email;
+        localStorage.setItem('username', this.user.name);
       }, () => {
         this.submitted = false;
       });
@@ -79,6 +80,9 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
           localStorage.clear();
         });
     }
+  }
+  logoutAll() {
+    this.userService.logoutAll();
   }
   showForm() {
     this.changeAvatar = !this.changeAvatar;

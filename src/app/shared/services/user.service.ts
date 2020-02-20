@@ -2,14 +2,16 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {User} from '../interfaces/user';
 import {Observable, Subject, throwError} from 'rxjs';
-import {catchError, map, tap} from 'rxjs/operators';
+import {catchError, tap} from 'rxjs/operators';
 import {AuthService} from './auth.service';
+import {Router} from '@angular/router';
 
 @Injectable({providedIn: 'root'})
 export class UserService {
   public userError$: Subject<string> = new Subject<string>();
   constructor(private http: HttpClient,
-              private auth: AuthService) {}
+              private auth: AuthService,
+              private router: Router) {}
   create(user: User): Observable<any> {
     return this.http.post('/api/users', user)
       .pipe(
@@ -31,5 +33,11 @@ export class UserService {
   }
   delete() {
     return this.http.delete('/api/users/me');
+  }
+  logoutAll() {
+    this.auth.logoutAll().subscribe(() => {
+      this.auth.logout();
+      this.router.navigate(['/login']);
+    });
   }
 }

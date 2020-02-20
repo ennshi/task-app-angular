@@ -52,6 +52,7 @@
         <div class="btn-group">
           <button type="submit" [disabled]="form.invalid" class="btn btn-success">Save</button>
           <button type="button" (click)="reset()" class="btn">Reset</button>
+          <button type="button" (click)="logoutAll()" class="btn btn-delete">Logout From All Devices</button>
           <button type="button" (click)="delete()" class="btn btn-delete">Delete Profile And All Data</button>
         </div>
       </form>

@@ -17,7 +17,9 @@ export class MainLayoutComponent implements OnInit {
 
   logout(event: Event) {
     event.preventDefault();
-    this.auth.logout();
-    this.router.navigate(['/', 'login']);
+    this.auth.logoutOnClick().subscribe(() => {
+      this.auth.logout();
+      this.router.navigate(['/', 'login']);
+    });
   }
 }

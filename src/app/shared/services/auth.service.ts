@@ -35,6 +35,12 @@ export class AuthService {
   logout() {
     this.setToken(null);
   }
+  logoutOnClick() {
+    return this.http.post('/api/users/logout', '');
+  }
+  logoutAll() {
+    return this.http.post('/api/users/logoutAll', '');
+  }
   isAuthenticated(): boolean {
     return !!this.token;
   }
