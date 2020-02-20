@@ -5,6 +5,8 @@ import {AdminLayoutComponent} from './shared/admin-layout/admin-layout.component
 import {UsersPageComponent} from './users-page/users-page.component';
 import { UserComponent } from './shared/user/user.component';
 import {SharedModule} from '../shared/shared.module';
+import {RoleGuard} from './shared/services/role.guard';
+import {AuthService} from '../shared/services/auth.service';
 
 @NgModule({
   declarations: [
@@ -19,12 +21,13 @@ import {SharedModule} from '../shared/shared.module';
       {
         path: '', component: AdminLayoutComponent, children: [
           {path: '', redirectTo: '/login', pathMatch: 'full'},
-          {path: 'users', component: UsersPageComponent}
+          {path: 'users', component: UsersPageComponent, canActivate: [RoleGuard]}
         ]
       }
     ])
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [RoleGuard, AuthService]
 })
 
 export class AdminModule {

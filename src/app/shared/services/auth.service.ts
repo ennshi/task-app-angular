@@ -25,7 +25,6 @@ export class AuthService {
     return localStorage.getItem('access-token');
   }
   login(user: User): Observable<any> {
-    user.isAuth = true;
     return this.http.post('/api/users/login', user, httpOptions)
       .pipe(
         tap(this.setToken),
@@ -44,6 +43,10 @@ export class AuthService {
   isAuthenticated(): boolean {
     return !!this.token;
   }
+  roleAdmin(): boolean {
+    const role = localStorage.getItem('role');
+    return role === 'admin';
+  }
   private handleError(error: HttpErrorResponse) {
     if (error.status === 400) {
       this.error$.next('User isn\'t registered or wrong credentials provided');
@@ -60,6 +63,7 @@ export class AuthService {
       localStorage.setItem('token-exp', expDate.toString());
       localStorage.setItem('id', response.user._id.toString());
       localStorage.setItem('username', response.user.name);
+      localStorage.setItem('role', response.user.role);
     } else {
       localStorage.clear();
     }

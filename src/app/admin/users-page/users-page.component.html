@@ -1,3 +1,7 @@
-<p>
-  users-page works!
-</p>
+<section *ngIf="users; else loading">
+<app-user *ngFor="let person of users" [user] = 'person'>
+</app-user>
+</section>
+<ng-template #loading>
+  <p>loading...</p>
+</ng-template>

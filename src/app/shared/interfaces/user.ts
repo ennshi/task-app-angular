@@ -5,5 +5,5 @@ export interface User {
   password: string;
   token?: string;
   avatar?: any;
-  isAuth?: boolean;
+  role?: string;
 }

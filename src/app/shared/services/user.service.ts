@@ -40,4 +40,7 @@ export class UserService {
       this.router.navigate(['/login']);
     });
   }
+  getAll() {
+    return this.http.get('/api/users/all');
+  }
 }
