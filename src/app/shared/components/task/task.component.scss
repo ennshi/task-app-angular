@@ -4,15 +4,18 @@ $card-border: 15px solid;
   background-color: var(--light-color);
   color: var(--primary-color);
   font-family: 'Montserrat', sans-serif;
-  margin: .4rem .2rem;
+  margin: .4rem .1rem;
   border-radius: 20px;
-  border-left: 15px solid;
   padding: .5rem;
-  max-width: 35rem;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-around;
+  width: 98vw;
 }
 
 form {
-  margin: 0 1rem;
+  box-sizing: border-box;
+  margin: 0 .5rem;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -20,11 +23,11 @@ form {
 
 textarea {
   margin: .5rem;
-  width: 50vw;
+  width: 48vw;
   max-width: 20rem;
   font-size: 1.2rem;
   padding-left: .5rem;
-  min-height: 2rem;
+  min-height: 2.5rem;
   &.active-form {
     font-size: .9rem;
   }
@@ -32,6 +35,7 @@ textarea {
 
 p {
   font-size: .8rem;
+  margin-bottom: .2rem;
 }
 
 fieldset {
@@ -59,5 +63,25 @@ fieldset {
 }
 
 .btn {
-  margin: .5rem;
+  margin: .5rem 0;
+  width: 4.5rem;
+  padding: .5rem .4rem;
+}
+@media screen and (min-width: 500px) {
+  .task {
+    width: 90vw;
+  }
+}
+@media screen and (min-width: 710px) {
+  .task {
+    width: 30rem;
+  }
+}
+@media screen and (min-width: 900px) {
+  form {
+    margin: 0 1rem;
+  }
+  .task {
+    width: 33rem;
+  }
 }

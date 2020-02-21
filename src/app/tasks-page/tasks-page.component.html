@@ -2,10 +2,10 @@
 <section class="card">
     <header>
       <img [src]="avatarUrl" (error)="fallbackImage()" alt="user avatar" />
-      <h1>Hello, {{username}}</h1>
+      <h1>Hello,<br/>{{username}}</h1>
     </header>
     <div class="card-body">
-      <p>Click to create a new task to do</p>
+      <p *ngIf="!showCreateForm">Click to create a new task to do</p>
       <div class="btn-group">
         <button class="btn" type="button" (click)="showForm()">New Task <i class="fas"
                                                                            [ngClass]="{'fa-angle-down': !showCreateForm,
@@ -25,7 +25,7 @@
           <textarea type="text" formControlName="description" id="create-description" class="active-form"></textarea>
         </div>
         <div class="btn-group">
-          <button type="submit" [disabled]="submitted" class="btn btn-success">Save</button>
+          <button type="submit" [disabled]="submitted||form.invalid" class="btn btn-success">Save</button>
           <button type="button" (click)="reset()" class="btn">Reset</button>
         </div>
       </form>
@@ -52,7 +52,7 @@
       <option>Date</option>
     </select>
   </div>
-  <div *ngIf="tasks; else loading">
+  <div *ngIf="tasks; else loading" id="tasks">
     <app-task *ngFor="let item of tasks" [task] = "item" (removeTask)="refreshTasks($event)">
     </app-task>
   </div>
