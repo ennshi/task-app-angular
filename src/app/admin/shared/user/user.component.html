@@ -1,6 +1,10 @@
-<div class="user">
+<section class="user">
   <div><p>{{user._id.toString()}}</p></div>
-  <div><p>{{user.name}}</p></div>
-  <div><p>{{user.role}}</p></div>
-  <div><button>Delete</button></div>
-</div>
+  <div id="inner-block">
+    <div>
+      <p>{{user.name}}</p>
+      <p>{{user.role}}</p>
+    </div>
+    <button class="btn">Delete</button>
+  </div>
+</section>
