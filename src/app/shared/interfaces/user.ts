@@ -6,4 +6,5 @@ export interface User {
   token?: string;
   avatar?: any;
   role?: string;
+  updatedAt?: string;
 }
