@@ -42,7 +42,10 @@
       </div>
     </div>
   </section>
-<section class="right-block">
+<section class="right-block" infiniteScroll
+         [infiniteScrollDistance]="2"
+         [infiniteScrollThrottle]="500"
+         (scrolled)="onScroll()">
   <div class="control-group">
     <label for="filter">Sort By</label>
     <select id="filter">

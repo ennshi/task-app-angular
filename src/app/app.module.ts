@@ -3,6 +3,7 @@ import {NgModule, Provider} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 import { AppComponent } from './app.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 
 import { MainLayoutComponent } from './shared/components/main-layout/main-layout.component';
@@ -14,6 +15,7 @@ import { TaskComponent } from './shared/components/task/task.component';
 import { RegistrationPageComponent } from './registration-page/registration-page.component';
 import {SharedModule} from './shared/shared.module';
 import {AuthInterceptor} from './shared/services/auth.interceptor';
+
 
 const INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
@@ -37,6 +39,7 @@ const INTERCEPTOR_PROVIDER: Provider = {
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    InfiniteScrollModule,
     SharedModule
   ],
   providers: [INTERCEPTOR_PROVIDER],

@@ -14,6 +14,7 @@ import {AvatarService} from '../shared/services/avatar.service';
 export class TasksPageComponent implements OnInit, OnDestroy {
   showCreateForm = false;
   form: FormGroup;
+  page: number;
   constructor(public taskService: TaskService,
               public avatar: AvatarService) { }
   // tasks$: Observable<Task[]>;
@@ -26,9 +27,8 @@ export class TasksPageComponent implements OnInit, OnDestroy {
   date = new Date();
 
   ngOnInit() {
-    this.pSub = this.taskService.getAll().subscribe((response: Task[]) => {
-      this.tasks = response;
-    });
+    this.page = 0;
+    this.newPage();
     this.form = new FormGroup({
       description: new FormControl(null, [Validators.required]),
       priority: new FormControl('low', [Validators.required])
@@ -39,7 +39,12 @@ export class TasksPageComponent implements OnInit, OnDestroy {
       this.pSub.unsubscribe();
     }
   }
-
+  newPage() {
+    this.pSub = this.taskService.getPage(this.page).subscribe((response: Task[]) => {
+      this.tasks = this.tasks ? this.tasks.concat(response) : response;
+      console.log(response);
+    });
+  }
   showForm() {
     this.showCreateForm = !this.showCreateForm;
   }
@@ -73,5 +78,10 @@ export class TasksPageComponent implements OnInit, OnDestroy {
   }
   fallbackImage() {
     this.avatarUrl = this.avatar.fallbackUrl;
+  }
+
+  onScroll() {
+    this.page++;
+    this.newPage();
   }
 }
