@@ -1,14 +1,14 @@
-<section class="task" [ngClass]="{'priority-low': task.priority === 'low',
-              'priority-middle': task.priority === 'middle',
-              'priority-high': task.priority === 'high'}">
+<section class="task" [ngClass]="{'priority-low': task.priority == 0,
+              'priority-middle': task.priority == 1,
+              'priority-high': task.priority == 2}">
   <form [formGroup]="form">
     <fieldset [disabled]="editMode ? null : 'disabled'">
       <div *ngIf="editMode" class="control-group">
         <label for="priority">Priority</label>
         <select formControlName="priority" id="priority" [(ngModel)]="task.priority" [ngClass]="{'active-form': editMode}">
-          <option value="low">low</option>
-          <option value="middle">middle</option>
-          <option value="high">high</option>
+          <option value="0">low</option>
+          <option value="1">middle</option>
+          <option value="2">high</option>
         </select>
       </div>
       <div class="control-group">

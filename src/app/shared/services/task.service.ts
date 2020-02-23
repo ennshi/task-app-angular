@@ -25,8 +25,8 @@ export class TaskService {
   delete(id) {
     return this.http.delete(`/api/tasks/${id}`);
   }
-  getPage(page) {
-    return this.http.get(`/api/tasks?limit=5&skip=${page * 5}`)
+  getPage(page, query) {
+    return this.http.get(`/api/tasks?sortBy=${query}&limit=5&skip=${page * 5}`)
       .pipe(map((response: {[key: string]: any}) => {
         return Object
           .keys(response)

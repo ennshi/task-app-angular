@@ -17,7 +17,7 @@ export class TaskComponent implements OnInit {
   submitted = false;
   submittedSave = false;
   description: string;
-  priority: string;
+  priority: number;
   constructor(public taskService: TaskService,
               private router: Router) { }
 

@@ -15,9 +15,9 @@
         <div class="control-group">
           <label for="create-priority">Priority</label>
           <select formControlName="priority" id="create-priority" class="active-form">
-            <option value="low">low</option>
-            <option value="middle">middle</option>
-            <option value="high">high</option>
+            <option value="0">low</option>
+            <option value="1">middle</option>
+            <option value="2">high</option>
           </select>
         </div>
         <div class="control-group">
@@ -48,11 +48,11 @@
          (scrolled)="onScroll()">
   <div class="control-group">
     <label for="filter">Sort By</label>
-    <select id="filter">
-      <option>---</option>
-      <option>Non-completed first</option>
-      <option>Completed first</option>
-      <option>Date</option>
+    <select [(ngModel)]="query" id="filter" (change)="setQuery()">
+      <option value="updatedAt:desc" selected>Date</option>
+      <option value="priority:desc">Priority</option>
+      <option value="completed:asc">Non-completed first</option>
+      <option value="completed:desc">Completed first</option>
     </select>
   </div>
   <div *ngIf="tasks; else loading" id="tasks">
