@@ -34,6 +34,9 @@ export class UserService {
   delete() {
     return this.http.delete('/api/users/me');
   }
+  deleteByAdmin(id) {
+    return this.http.delete(`/api/admin/users/${id}`);
+  }
   logoutAll() {
     this.auth.logoutAll().subscribe(() => {
       this.auth.logout();

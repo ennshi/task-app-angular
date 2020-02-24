@@ -1,5 +1,5 @@
 <section *ngIf="users; else loading">
-<app-user *ngFor="let person of users" [user] = 'person'>
+<app-user *ngFor="let person of users; let i = index" [user] = 'person' (removeUser)="refreshUsers($event)">
 </app-user>
 </section>
 <ng-template #loading>
