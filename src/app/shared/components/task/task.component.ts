@@ -14,6 +14,7 @@ export class TaskComponent implements OnInit {
   @Output() removeTask: EventEmitter<string> = new EventEmitter<string>();
   editMode = false;
   form: FormGroup;
+  taskFormId: number;
   submitted = false;
   submittedSave = false;
   description: string;
@@ -28,6 +29,7 @@ export class TaskComponent implements OnInit {
     });
     this.description = this.task.description;
     this.priority = this.task.priority;
+    this.taskFormId = Math.floor(Math.random() * 100000);
   }
   editTaskForm() {
     this.submitted = !this.submitted;
