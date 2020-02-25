@@ -7,6 +7,7 @@ import { UserComponent } from './shared/user/user.component';
 import {SharedModule} from '../shared/shared.module';
 import {RoleGuard} from './shared/services/role.guard';
 import {AuthService} from '../shared/services/auth.service';
+import {SharedcomsModule} from '../shared/sharedcoms.module';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import {AuthService} from '../shared/services/auth.service';
   imports: [
     CommonModule,
     SharedModule,
+    SharedcomsModule,
     RouterModule.forChild([
       {
         path: '', component: AdminLayoutComponent, children: [

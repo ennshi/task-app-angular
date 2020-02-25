@@ -15,6 +15,7 @@ import { TaskComponent } from './shared/components/task/task.component';
 import { RegistrationPageComponent } from './registration-page/registration-page.component';
 import {SharedModule} from './shared/shared.module';
 import {AuthInterceptor} from './shared/services/auth.interceptor';
+import {SharedcomsModule} from './shared/sharedcoms.module';
 
 
 const INTERCEPTOR_PROVIDER: Provider = {
@@ -40,7 +41,8 @@ const INTERCEPTOR_PROVIDER: Provider = {
     FormsModule,
     ReactiveFormsModule,
     InfiniteScrollModule,
-    SharedModule
+    SharedModule,
+    SharedcomsModule
   ],
   providers: [INTERCEPTOR_PROVIDER],
   bootstrap: [AppComponent]

@@ -5,12 +5,14 @@ import {Observable, Subject, throwError} from 'rxjs';
 import {catchError, tap} from 'rxjs/operators';
 import {AuthService} from './auth.service';
 import {Router} from '@angular/router';
+import {AlertService} from './alert.service';
 
 @Injectable({providedIn: 'root'})
 export class UserService {
   public userError$: Subject<string> = new Subject<string>();
   constructor(private http: HttpClient,
               private auth: AuthService,
+              private alert: AlertService,
               private router: Router) {}
   create(user: User): Observable<any> {
     return this.http.post('/api/users', user)
@@ -41,6 +43,7 @@ export class UserService {
     this.auth.logoutAll().subscribe(() => {
       this.auth.logout();
       this.router.navigate(['/login']);
+      this.alert.display('Logged out successfully');
     });
   }
   getAll() {

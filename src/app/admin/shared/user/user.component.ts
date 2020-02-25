@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {User} from '../../../shared/interfaces/user';
 import {UserService} from '../../../shared/services/user.service';
+import {AlertService} from '../../../shared/services/alert.service';
 
 @Component({
   selector: 'app-user',
@@ -11,15 +12,16 @@ import {UserService} from '../../../shared/services/user.service';
 export class UserComponent implements OnInit {
   @Input() user: User;
   @Output() removeUser: EventEmitter<string> = new EventEmitter<string>();
-  constructor(public userService: UserService) { }
+  constructor(public userService: UserService,
+              public alert: AlertService) { }
 
   ngOnInit() {
   }
   delete() {
-    this.userService.deleteByAdmin(this.user._id.toString()).subscribe(() => {
-      this.removeUser.emit(this.user._id.toString());
-    }, () => {
-      console.log('eee');
+    const id = this.user._id.toString();
+    this.userService.deleteByAdmin(id).subscribe(() => {
+      this.removeUser.emit(id);
+      this.alert.display('User successfully deleted');
     });
   }
 }

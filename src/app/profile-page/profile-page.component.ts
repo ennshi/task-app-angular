@@ -5,6 +5,7 @@ import {Subscription} from 'rxjs';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {AvatarService} from '../shared/services/avatar.service';
+import {AlertService} from '../shared/services/alert.service';
 
 @Component({
   selector: 'app-profile-page',
@@ -26,6 +27,7 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
   imgPattern = new RegExp('.(jpg|jpeg|png)$', 'i');
   constructor(public userService: UserService,
               public avatar: AvatarService,
+              public alert: AlertService,
               public router: Router) { }
 
   ngOnInit() {
@@ -64,6 +66,8 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
         this.name = this.user.name;
         this.email = this.user.email;
         localStorage.setItem('username', this.user.name);
+        this.reset();
+        this.alert.display('Profile successfully updated');
       }, () => {
         this.submitted = false;
       });
@@ -78,6 +82,7 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
         .subscribe(() => {
           this.router.navigate(['/']);
           localStorage.clear();
+          this.alert.display('Profile successfully deleted');
         });
     }
   }

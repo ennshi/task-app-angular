@@ -13,8 +13,6 @@ export class AdminLayoutComponent implements OnInit {
               public userService: UserService) { }
   ngOnInit() {
   }
-
-
   logout() {
     this.router.navigate(['/', 'login']);
   }
