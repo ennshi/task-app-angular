@@ -14,7 +14,7 @@
         <div class="control-group">
           <input type="file" id="avatar" formControlName="avatarImg" (change)="selectImg($event)"/>
           <div class="validation" *ngIf="avatarForm.invalid && avatarForm.touched && !avatarForm.pristine">
-            <small>Please add an avatar (JPG, JPEG or PNG) and smaller than 1MB</small>
+            <small>Please add an avatar (jpg, jpeg or png) and smaller than 1MB</small>
           </div>
         </div>
         <div class="btn-group">
@@ -36,14 +36,14 @@
           <small>Please provide a username 3-20 characters long</small>
         </div>
         <div class="control-group">
-          <label for="email">Password</label>
+          <label for="email">Email</label>
           <input formControlName="email" type="email" [(ngModel)]="user.email" id="email"/>
         </div>
         <div class="validation" *ngIf="form.get('email').touched&&form.get('email').invalid">
           <small>Please provide a correct email</small>
         </div>
         <div class="control-group">
-          <label for="password">Password</label>
+          <label for="password">New (or current) password</label>
           <input formControlName="password" type="password" id="password"/>
         </div>
         <div class="validation" *ngIf="form.get('password').touched&&form.get('password').invalid">

@@ -51,6 +51,17 @@ nav {
     margin: 0 0.25rem;
     font-size: 1.2rem;
     letter-spacing: 0.02rem;
+    &:hover {
+      color: var(--success-color);
+      -webkit-transition-delay: 0s;
+      -webkit-transition-duration: 1s;
+      -webkit-transition-property: all;
+      -webkit-transition-timing-function: ease;
+    }
+    &.active {
+      color: var(--success-color);
+      cursor: default;
+    }
   }
 }
 
@@ -201,3 +212,5 @@ button:disabled {
   color: darkgrey;
   cursor: not-allowed;
 }
+
+

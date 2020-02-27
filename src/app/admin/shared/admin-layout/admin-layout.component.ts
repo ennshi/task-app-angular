@@ -1,7 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
-import {UserService} from '../../../shared/services/user.service';
-
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-admin-layout',
@@ -9,11 +6,7 @@ import {UserService} from '../../../shared/services/user.service';
   styleUrls: ['./admin-layout.component.scss']
 })
 export class AdminLayoutComponent implements OnInit {
-  constructor(private router: Router,
-              public userService: UserService) { }
+  constructor() { }
   ngOnInit() {
-  }
-  logout() {
-    this.router.navigate(['/', 'login']);
   }
 }

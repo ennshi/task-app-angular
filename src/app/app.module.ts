@@ -16,6 +16,7 @@ import { RegistrationPageComponent } from './registration-page/registration-page
 import {SharedModule} from './shared/shared.module';
 import {AuthInterceptor} from './shared/services/auth.interceptor';
 import {SharedcomsModule} from './shared/sharedcoms.module';
+import {RouterModule} from '@angular/router';
 
 
 const INTERCEPTOR_PROVIDER: Provider = {
@@ -42,7 +43,8 @@ const INTERCEPTOR_PROVIDER: Provider = {
     ReactiveFormsModule,
     InfiniteScrollModule,
     SharedModule,
-    SharedcomsModule
+    SharedcomsModule,
+    RouterModule
   ],
   providers: [INTERCEPTOR_PROVIDER],
   bootstrap: [AppComponent]

@@ -37,7 +37,7 @@ export class TaskComponent implements OnInit {
   }
   save() {
     this.submittedSave = true;
-    const task = {
+    const task: Task = {
       description: this.task.description,
       priority: this.task.priority
     };

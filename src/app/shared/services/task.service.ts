@@ -1,31 +1,22 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
+import { Task } from '../interfaces/task';
 
 @Injectable({providedIn: 'root'})
 export class TaskService {
   constructor(private http: HttpClient) {
   }
-  getAll() {
-    return this.http.get('/api/tasks')
-      .pipe(map((response: {[key: string]: any}) => {
-        return Object
-          .keys(response)
-          .map( key => ({
-            ...response[key]
-          }));
-      }));
-  }
-  create(task) {
+  create(task: Task) {
     return this.http.post('/api/tasks', task);
   }
-  update(id, task) {
+  update(id: string, task: Task) {
     return this.http.patch(`/api/tasks/${id}`, task);
   }
-  delete(id) {
+  delete(id: string) {
     return this.http.delete(`/api/tasks/${id}`);
   }
-  getPage(page, query) {
+  getPage(page: number, query: string) {
     return this.http.get(`/api/tasks?sortBy=${query}&limit=5&skip=${page * 5}`)
       .pipe(map((response: {[key: string]: any}) => {
         return Object

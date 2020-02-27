@@ -33,10 +33,10 @@ export class UserService {
   update(user: User) {
     return this.http.patch('/api/users/me', user);
   }
-  delete() {
+  delete(): Observable<any> {
     return this.http.delete('/api/users/me');
   }
-  deleteByAdmin(id) {
+  deleteByAdmin(id: string) {
     return this.http.delete(`/api/admin/users/${id}`);
   }
   logoutAll() {
@@ -46,7 +46,7 @@ export class UserService {
       this.alert.display('Logged out successfully');
     });
   }
-  getAll() {
+  getAll(): Observable<any> {
     return this.http.get('/api/users/all');
   }
 }

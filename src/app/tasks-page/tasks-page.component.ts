@@ -1,9 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {TaskService} from '../shared/services/task.service';
-import {Observable, Subscription} from 'rxjs';
+import {Subscription} from 'rxjs';
 import {Task} from '../shared/interfaces/task';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {filter, map} from 'rxjs/operators';
 import {AvatarService} from '../shared/services/avatar.service';
 
 @Component({
@@ -19,7 +18,6 @@ export class TasksPageComponent implements OnInit, OnDestroy {
   page: number;
   gotAll = false;
   query = 'updatedAt:desc';
-  // tasks$: Observable<Task[]>;
   submitted = false;
   id = localStorage.getItem('id');
   username = localStorage.getItem('username');
@@ -40,10 +38,10 @@ export class TasksPageComponent implements OnInit, OnDestroy {
       this.pSub.unsubscribe();
     }
   }
-  newPage(page, query) {
+  newPage(page: number, query: string) {
     this.pSub = this.taskService.getPage(page, query).subscribe((response: Task[]) => {
       this.tasks = this.tasks ? this.tasks.concat(response) : response;
-      if (!response.length) { this.gotAll = true; console.log(this.gotAll); }
+      if (!response.length) { this.gotAll = true; }
     });
   }
   showForm() {
@@ -55,7 +53,7 @@ export class TasksPageComponent implements OnInit, OnDestroy {
   }
   createTask() {
     this.submitted = true;
-    const task = {
+    const task: Task = {
       description: this.form.value.description,
       priority: this.form.value.priority
     };
@@ -63,18 +61,12 @@ export class TasksPageComponent implements OnInit, OnDestroy {
       this.tasks.unshift(response);
       this.form.reset({priority: 0});
       this.showForm();
-      // this.tasks$ = this.tasks$.pipe(map((tasks) => {
-      //   tasks.unshift(response);
-      //   return tasks;
-      // }));
       this.submitted = false;
     }, () => {
       this.submitted = false;
     });
   }
-  refreshTasks(id) {
-    // this.tasks$ = this.tasks$
-    //   .pipe(map((tasks) => tasks.filter(task => (task._id.toString() !== id))));
+  refreshTasks(id: string) {
     this.tasks = this.tasks.filter(task => task._id !== id);
   }
   fallbackImage() {

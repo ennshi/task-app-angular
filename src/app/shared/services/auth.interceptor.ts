@@ -3,7 +3,7 @@ import {HttpHandler, HttpInterceptor, HttpRequest, HttpEvent, HttpHeaders, HttpE
 import {Observable, throwError} from 'rxjs';
 import {AuthService} from './auth.service';
 import {Router} from '@angular/router';
-import {catchError, tap} from 'rxjs/operators';
+import {catchError} from 'rxjs/operators';
 
 @Injectable({providedIn: 'root'})
 export class AuthInterceptor implements HttpInterceptor {
@@ -19,9 +19,7 @@ export class AuthInterceptor implements HttpInterceptor {
     }
     return next.handle(req)
       .pipe(
-        tap(() => console.log('interceptor')),
         catchError((error: HttpErrorResponse) => {
-          console.log('Interceptor, Error', error);
           if (error.status === 401) {
             this.auth.logout();
             this.router.navigate(['/login'], {
@@ -29,7 +27,7 @@ export class AuthInterceptor implements HttpInterceptor {
             });
           }
           return throwError(error);
-      })
+        })
       );
   }
 

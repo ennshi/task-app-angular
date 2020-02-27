@@ -25,7 +25,7 @@ export class UsersPageComponent implements OnInit, OnDestroy {
       this.pSub.unsubscribe();
     }
   }
-  refreshUsers(id) {
+  refreshUsers(id: string) {
     this.users = this.users.filter(user => user._id !== id);
   }
 

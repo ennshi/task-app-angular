@@ -40,9 +40,15 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
         avatarImg: new FormControl(null, [Validators.required, Validators.pattern(this.imgPattern)])
       });
       this.form = new FormGroup({
-        name: new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(20)]),
+        name: new FormControl(null, [Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(20),
+          this.noWhitespaceValidator]),
         email: new FormControl(null, [Validators.email, Validators.required]),
-        password: new FormControl(null, [Validators.required, Validators.minLength(9), Validators.maxLength(20)])
+        password: new FormControl(null, [Validators.required,
+          Validators.minLength(9),
+          Validators.maxLength(20),
+          this.noWhitespaceValidator])
       });
     });
   }
@@ -52,7 +58,7 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
     }
   }
   submit() {
-    const user = {
+    const user: User = {
       name: this.user.name,
       email: this.user.email,
       password: this.user.password
@@ -88,6 +94,11 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
   }
   logoutAll() {
     this.userService.logoutAll();
+  }
+  public noWhitespaceValidator(control: FormControl) {
+    const isWhitespace = (control.value || '').trim().length === 0;
+    const isValid = !isWhitespace;
+    return isValid ? null : { 'whitespace': true };
   }
   showForm() {
     this.changeAvatar = !this.changeAvatar;

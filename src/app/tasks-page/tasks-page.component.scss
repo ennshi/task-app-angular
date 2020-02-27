@@ -176,6 +176,9 @@ button {
     header {
       height: 6rem;
     }
+    label[for='create-description'] {
+      margin-top: .4rem;
+    }
   }
   .card:nth-child(2) {
     header {

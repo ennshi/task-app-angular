@@ -8,7 +8,7 @@ export class AvatarService {
   delete() {
     return this.http.delete('/api/users/me/avatar');
   }
-  add(image) {
+  add(image: any) {
     return this.http.post('/api/users/me/avatar', image);
   }
 }
