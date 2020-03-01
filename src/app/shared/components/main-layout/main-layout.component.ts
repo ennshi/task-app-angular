@@ -23,6 +23,7 @@ export class MainLayoutComponent implements OnInit {
     this.auth.logoutOnClick().subscribe(() => {
       this.auth.logout();
       this.router.navigate(['/', 'login']);
+      this.menuCollapsed = !this.menuCollapsed;
     });
   }
   @HostListener('window:resize', ['$event'])

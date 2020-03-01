@@ -16,6 +16,9 @@ export class TaskService {
   delete(id: string) {
     return this.http.delete(`/api/tasks/${id}`);
   }
+  getNumTasks() {
+    return this.http.get('/api/tasksNumber');
+  }
   getPage(page: number, query: string) {
     return this.http.get(`/api/tasks?sortBy=${query}&limit=5&skip=${page * 5}`)
       .pipe(map((response: {[key: string]: any}) => {
